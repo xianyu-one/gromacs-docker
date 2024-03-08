@@ -7,10 +7,10 @@ latest_tag=$(curl -s https://api.github.com/repos/gromacs/gromacs/tags | jq -r '
 wget https://github.com/gromacs/gromacs/archive/$latest_tag.tar.gz
 
 # 解压源码
-tar -xzf gromacs-$latest_tag.tar.gz
+tar -xzf $latest_tag.tar.gz
 
 # 删除压缩包
-rm gromacs-$latest_tag.tar.gz
+rm $latest_tag.tar.gz
 
 # 更改文件夹名
-mv gromacs-$latest_tag app
+mv $latest_tag /app
