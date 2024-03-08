@@ -1,4 +1,4 @@
-#gromacs-docker
+# gromacs-docker
 
 Containerized build of [gromacs](https://gromacs.org)
 

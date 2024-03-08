@@ -5,6 +5,8 @@ COPY get_src.sh /get_src.sh
 RUN apt update && apt upgrade -y && \
     apt install \
     wget \
+    curl \
+    jq \
     cmake \
     build-essential \
     -y && \
