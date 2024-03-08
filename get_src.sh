@@ -12,5 +12,7 @@ tar -xzf $latest_tag.tar.gz
 # 删除压缩包
 rm $latest_tag.tar.gz
 
+src_PATH=${latest_tag//v/-}
+
 # 更改文件夹名
-mv $latest_tag /app
+mv gromacs$src_PATH /app
