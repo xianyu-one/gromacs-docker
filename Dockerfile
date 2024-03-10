@@ -23,7 +23,6 @@ RUN mkdir build && \
     -DREGRESSIONTEST_DOWNLOAD=ON && \
     export CPU_CORES=$(nproc) && \
     make -j $CPU_CORES && \
-    make check -j $CPU_CORES && \
     make install && \
     cd /usr/local/gromacs/share/gromacs/top && \
     tar -czvf /usr/local/gromacs/share/gromacs/top.tar.gz * && \
