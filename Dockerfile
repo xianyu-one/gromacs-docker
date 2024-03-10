@@ -1,8 +1,5 @@
 FROM ubuntu:jammy AS builder
 
-ENV http_proxy=http://10.233.0.1:7890
-ENV https_proxy=http://10.233.0.1:7890
-
 COPY get_src.sh /get_src.sh
 
 RUN apt update && apt upgrade -y && \
