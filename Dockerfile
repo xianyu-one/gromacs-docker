@@ -1,5 +1,8 @@
 FROM ubuntu:jammy AS builder
 
+ENV http_proxy=http://10.233.0.1:7890
+ENV https_proxy=http://10.233.0.1:7890
+
 COPY get_src.sh /get_src.sh
 
 RUN apt update && apt upgrade -y && \
@@ -25,8 +28,10 @@ RUN mkdir build && \
     make -j $CPU_CORES && \
     make check -j $CPU_CORES && \
     make install && \
-    tar -czvf top.tar.gz /usr/local/gromacs/share/gromacs/top && \
-    rm -rf /usr/local/gromacs/share/gromacs/topwei ko
+    cd /usr/local/gromacs/share/gromacs/top && \
+    tar -czvf /usr/local/gromacs/share/gromacs/top.tar.gz * && \
+    cd / && \
+    rm -rf /usr/local/gromacs/share/gromacs/top/*
 
 FROM ubuntu:jammy
 
@@ -37,10 +42,12 @@ RUN apt update && apt upgrade -y && \
     apt install \
     wget \
     python3 \
+    libgomp1 \
     bash-completion \
     -y && \
-    chmod +x /init.sh && \
-    echo 'source /usr/local/gromacs/bin/GMXRC' >> /etc/profile
+    chmod +x /init.sh
+
+ENV USER_UID=1000 
 
 WORKDIR /work
 
